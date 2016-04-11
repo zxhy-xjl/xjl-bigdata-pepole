@@ -1,4 +1,5 @@
 package com.zxhy.xjl.people;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.codec.binary.Base64;
@@ -13,14 +14,26 @@ import org.springframework.stereotype.Service;
 @Service
 public class PeopleServiceImpl implements PeopleService {
 	private static Log log = LogFactory.getLog(PeopleServiceImpl.class);
+	private String peopleURL;
+	
+	public String getPeopleURL() {
+		return peopleURL;
+	}
+
+	public void setPeopleURL(String peopleURL) {
+		this.peopleURL = peopleURL;
+	}
+	
 	public boolean checkID(String idCode, String idName) {
 		log.debug("验证身份证信息idCode:" + idCode + " idName:" + idName);
 		String isSuccess = null;
 		IDInfo gaCard;
 		List<IDInfo> gaidcardinfolist=new ArrayList<IDInfo>();
 		try {
+			//地址改成配置文件，从地址中获取ip和端口，这个不要用在配置一遍
+			//todo 杨再兄
 				  isSuccess = WebService.Send(gaidcardinfolist,
-					"http://172.25.1.26:8089/rs/retrieve", 
+					this.peopleURL, 
 					"172.25.1.26", 
 					8089, 
 					"YCZWXT", 

@@ -9,5 +9,8 @@
                         ">  
     <!-- 自动扫描 -->  
     <context:component-scan base-package="com.zxhy.xjl" />  
+    <bean id="peopleService" class="com.zxhy.xjl.people.PeopleServiceImpl">
+        <property name="peopleURL" value="http://172.25.1.26:8089/rs/retrieve"></property>
+    </bean>
     
 </beans>  
