@@ -10,7 +10,16 @@
     <!-- 自动扫描 -->  
     <context:component-scan base-package="com.zxhy.xjl" />  
     <bean id="peopleService" class="com.zxhy.xjl.people.PeopleServiceImpl">
-        <property name="peopleURL" value="http://172.25.1.26:8089/rs/retrieve"></property>
+         <property name="peopleURL" value="http://172.25.1.26:8089/rs/retrieve"></property>
+         <property name="ip" value="172.25.1.26"></property>
+         <property name="port" value="8089"></property>
+         <property name="gaidCardSystemId" value="YCZWXT"></property>
+         <property name="gaidCardKey" value="MIIBSwIBADCCASwGByqGSM44BAEwggEfAoGBAP1_U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq_xfW6MPbLm1Vs14E7gB00b_JmYLdrmVClpJ-f6AR7ECLCT7up1_63xhv4O1fnxqimFQ8E-4P208UewwI1VBNaFpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC_BYHPUCgYEA9-GghdabPd7LvKtcNrhXuXmUr7v6OuqC-VdMCz0HgmdRWVeOutRZT-ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN_C_ohNWLx-2J6ASQ7zKTxvqhRkImog9_hWuWfBpKLZl6Ae1UlZAFMO_7PSSoEFgIUZb_PF1KCz5sIdT-VANuLWmMfqes"></property>
+         <property name="gaidCardEntryNamem" value="SFZXX"></property>
+         <property name="gaidCardEntryNamep" value="ZPXX"></property>
+         <property name="gaidCardAliasm" value="\u8EAB\u4EFD\u8BC1\u4FE1\u606F"></property>
+         <property name="gaidCardAliasp" value="\u6237\u7C4D\u4EBA\u53E3\u7167\u7247\u4FE1\u606F"></property>
+         
     </bean>
     
 </beans>  

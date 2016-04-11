@@ -15,7 +15,14 @@ import org.springframework.stereotype.Service;
 public class PeopleServiceImpl implements PeopleService {
 	private static Log log = LogFactory.getLog(PeopleServiceImpl.class);
 	private String peopleURL;
-	
+	private String ip;
+	private int port;
+	private String gaidCardSystemId;
+	private String gaidCardKey;
+	private String gaidCardEntryNamem;
+	private String gaidCardAliasm;
+	private String gaidCardAliasp;
+    private String gaidCardEntryNamep;
 	public String getPeopleURL() {
 		return peopleURL;
 	}
@@ -24,6 +31,72 @@ public class PeopleServiceImpl implements PeopleService {
 		this.peopleURL = peopleURL;
 	}
 	
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public void setPort(int port) {
+		this.port = port;
+	}
+
+	
+
+	public String getGaidCardSystemId() {
+		return gaidCardSystemId;
+	}
+
+	public void setGaidCardSystemId(String gaidCardSystemId) {
+		this.gaidCardSystemId = gaidCardSystemId;
+	}
+
+	public String getGaidCardKey() {
+		return gaidCardKey;
+	}
+
+	public void setGaidCardKey(String gaidCardKey) {
+		this.gaidCardKey = gaidCardKey;
+	}
+
+	public String getGaidCardEntryNamem() {
+		return gaidCardEntryNamem;
+	}
+
+	public void setGaidCardEntryNamem(String gaidCardEntryNamem) {
+		this.gaidCardEntryNamem = gaidCardEntryNamem;
+	}
+
+	public String getGaidCardAliasm() {
+		return gaidCardAliasm;
+	}
+
+	public void setGaidCardAliasm(String gaidCardAliasm) {
+		this.gaidCardAliasm = gaidCardAliasm;
+	}
+	
+	public String getGaidCardAliasp() {
+		return gaidCardAliasp;
+	}
+
+	public void setGaidCardAliasp(String gaidCardAliasp) {
+		this.gaidCardAliasp = gaidCardAliasp;
+	}
+
+	public String getGaidCardEntryNamep() {
+		return gaidCardEntryNamep;
+	}
+
+	public void setGaidCardEntryNamep(String gaidCardEntryNamep) {
+		this.gaidCardEntryNamep = gaidCardEntryNamep;
+	}
+
 	public boolean checkID(String idCode, String idName) {
 		log.debug("验证身份证信息idCode:" + idCode + " idName:" + idName);
 		String isSuccess = null;
@@ -32,17 +105,17 @@ public class PeopleServiceImpl implements PeopleService {
 		try {
 			//地址改成配置文件，从地址中获取ip和端口，这个不要用在配置一遍
 			//todo 杨再兄
-				  isSuccess = WebService.Send(gaidcardinfolist,
+				   isSuccess = WebService.Send(gaidcardinfolist,
 					this.peopleURL, 
-					"172.25.1.26", 
-					8089, 
-					"YCZWXT", 
-					"MIIBSwIBADCCASwGByqGSM44BAEwggEfAoGBAP1_U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq_xfW6MPbLm1Vs14E7gB00b_JmYLdrmVClpJ-f6AR7ECLCT7up1_63xhv4O1fnxqimFQ8E-4P208UewwI1VBNaFpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC_BYHPUCgYEA9-GghdabPd7LvKtcNrhXuXmUr7v6OuqC-VdMCz0HgmdRWVeOutRZT-ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN_C_ohNWLx-2J6ASQ7zKTxvqhRkImog9_hWuWfBpKLZl6Ae1UlZAFMO_7PSSoEFgIUZb_PF1KCz5sIdT-VANuLWmMfqes",
-					"SFZXX",
-					"\u8EAB\u4EFD\u8BC1\u4FE1\u606F",
-					 idCode,
-					 idName, 
-					 1, 1);
+					this.ip, 
+					Integer.valueOf(this.port), 
+					this.gaidCardSystemId, 
+					this.gaidCardKey,
+					this.gaidCardEntryNamem,
+					this.gaidCardAliasm,
+					idCode,
+					idName, 
+					1, 1);
 			
 		} catch (Exception e) {
 			    log.debug("调用大数据接口异常 ");
@@ -78,14 +151,16 @@ public class PeopleServiceImpl implements PeopleService {
 		try {
 			  
 			  isSuccess = WebService.Send(gaidcardinfolist,
-						"http://172.25.1.26:8089/rs/retrieve", 
-						"172.25.1.26", 
-						8089, 
-						"YCZWXT", 
-						"MIIBSwIBADCCASwGByqGSM44BAEwggEfAoGBAP1_U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq_xfW6MPbLm1Vs14E7gB00b_JmYLdrmVClpJ-f6AR7ECLCT7up1_63xhv4O1fnxqimFQ8E-4P208UewwI1VBNaFpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC_BYHPUCgYEA9-GghdabPd7LvKtcNrhXuXmUr7v6OuqC-VdMCz0HgmdRWVeOutRZT-ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN_C_ohNWLx-2J6ASQ7zKTxvqhRkImog9_hWuWfBpKLZl6Ae1UlZAFMO_7PSSoEFgIUZb_PF1KCz5sIdT-VANuLWmMfqes",
-						"SFZXX",
-						"\u8EAB\u4EFD\u8BC1\u4FE1\u606F",
-						 idCode,idName, 1, 1);	
+					    this.peopleURL, 
+						this.ip, 
+						Integer.valueOf(this.port), 
+						this.gaidCardSystemId, 
+						this.gaidCardKey,
+						this.gaidCardEntryNamem,
+						this.gaidCardAliasm,
+						 idCode,
+						 idName, 
+						 1, 1);
 			} catch (Exception e) {
 				log.debug("调用大数据接口异常 ");
 				throw new RuntimeException(e);
@@ -128,13 +203,13 @@ public class PeopleServiceImpl implements PeopleService {
 		List<IDInfo> gaidcardinfolist=new ArrayList<IDInfo>();
 		try {
 			isSuccess = WebService.Send(gaidcardinfolist,
-					"http://172.25.1.26:8089/rs/retrieve", 
-					"172.25.1.26", 
-					8089, 
-					"YCZWXT", 
-					"MIIBSwIBADCCASwGByqGSM44BAEwggEfAoGBAP1_U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq_xfW6MPbLm1Vs14E7gB00b_JmYLdrmVClpJ-f6AR7ECLCT7up1_63xhv4O1fnxqimFQ8E-4P208UewwI1VBNaFpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC_BYHPUCgYEA9-GghdabPd7LvKtcNrhXuXmUr7v6OuqC-VdMCz0HgmdRWVeOutRZT-ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN_C_ohNWLx-2J6ASQ7zKTxvqhRkImog9_hWuWfBpKLZl6Ae1UlZAFMO_7PSSoEFgIUZb_PF1KCz5sIdT-VANuLWmMfqes",
-					"ZPXX",
-					"\u6237\u7C4D\u4EBA\u53E3\u7167\u7247\u4FE1\u606F",
+					   this.peopleURL, 
+						this.ip, 
+						Integer.valueOf(this.port), 
+						this.gaidCardSystemId, 
+						this.gaidCardKey,
+						this.gaidCardEntryNamep,
+						this.gaidCardAliasp,
 					idCode,idName, 1, 1);
 		} catch (Exception e) {
 		    log.debug("调用大数据接口异常 ");

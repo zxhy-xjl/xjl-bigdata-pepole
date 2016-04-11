@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 * 创建时间             2016年4月6日下午3:06:25
 */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:ApplicationContext-pepole.xml"})
+@ContextConfiguration(locations = { "classpath:ApplicationContext-people.xml"})
 public class PeopleServiceTest {
    private static Log log = LogFactory.getLog(PeopleServiceTest.class);
    @Autowired
@@ -42,10 +42,9 @@ public class PeopleServiceTest {
 			              " 出生日期: "+gaCard.getBirthday()+" 性别: "+gaCard.getSex()+
 			              " 国籍： "+gaCard.getIssuingOrganizations()+" 有效日期起： "+gaCard.getExpireDate()+
 			              " 有效日期至： "+gaCard.getIssuingDate());
-	 
 	  
    }
-   @Test
+  @Test
    public void getIDPhoto() throws IOException{
 	   Assert.assertTrue(this.peopleService.getIDPhoto("640102196708120329", "王芳宁")!=null);
 	   Assert.assertTrue(this.peopleService.getIDPhoto("640321198603071742", "李艳玲")==null);
