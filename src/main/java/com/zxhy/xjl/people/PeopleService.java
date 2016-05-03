@@ -6,7 +6,7 @@ package com.zxhy.xjl.people;
  * @author leasonlive
  *
  */
-public interface PeopleService {
+public interface PeopleService { 
 	/**
 	 * 验证身份证信息
 	 * @param idCode 身份证号码
